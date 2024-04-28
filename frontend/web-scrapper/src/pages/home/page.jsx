@@ -2,18 +2,19 @@ import { Box, TextField } from "@mui/material";
 import "./page.css";
 import { useEffect, useState } from "react";
 import EastIcon from "@mui/icons-material/East";
-import axios from 'axios';
+import axios from "axios";
 
 function Home() {
   const [typedText, setTypedText] = useState("");
   const [fullText, setFullText] = useState("   Hello !     ");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
 
   const [finish, setFinish] = useState(false);
 
   function nextclick() {
-    console.log("clicked", name, url);
+    console.log("clicked", name, url, email);
     if (fullText == "Enter Your Name") {
       setFinish(false);
       setTypedText("");
@@ -22,17 +23,22 @@ function Home() {
     if (fullText == "Enter Your Email") {
       setFinish(false);
       setTypedText("");
-      setFullText(`Thanks ${name}. You will get Notification when price drops`);
-      }
-
-      if (name && url) {
-          axios
-              .post('', {
-                  user: name,
-                  url: url
-          })
+      setFullText(`Enter the Product Url`);
     }
-      
+
+    if (fullText == "Enter the Product Url") {
+      setFinish(false);
+      setTypedText("");
+      setFullText(`Thanks ${name}. You will get Notification when price drops`);
+    }
+      if (name && url && email) {
+        console.log('came to axios')
+      axios.post("", {
+        user: name,
+        email: email,
+        url: url,
+      });
+    }
   }
 
   useEffect(() => {
@@ -57,6 +63,11 @@ function Home() {
       } else if (
         fullText == "Enter Your Email" &&
         typedText === "Enter Your Email"
+      ) {
+        setFinish(true);
+      } else if (
+        fullText == "Enter the Product Url" &&
+        typedText === "Enter the Product Url"
       ) {
         setFinish(true);
       }
@@ -109,6 +120,8 @@ function Home() {
                   if (fullText == "Enter Your Name") {
                     setName(event.target.value);
                   } else if (fullText == "Enter Your Email") {
+                    setEmail(event.target.value);
+                  } else if (fullText == "Enter the Product Url") {
                     setUrl(event.target.value);
                   }
                 }}
@@ -117,7 +130,6 @@ function Home() {
                 <EastIcon
                   sx={{
                     marginTop: "14%",
-                    marginLeft: "20px",
                   }}
                 />
               </div>
