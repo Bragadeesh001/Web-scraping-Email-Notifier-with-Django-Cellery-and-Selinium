@@ -37,3 +37,22 @@ class ProductRating(models.Model):
     product_details = models.OneToOneField(ProductDetails, on_delete=models.CASCADE, related_name='ratings')
     rating = models.CharField(max_length=255, blank=True)
     total_rating = models.CharField(max_length=255, blank=True)
+
+class EmailNotification(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    body = models.CharField(max_length=1000, blank=False)
+    subject = models.CharField(max_length=500, blank=False)
+    from_user_detail = models.ForeignKey(UserDetail, on_delete=models.CASCADE, related_name='email_notification')
+
+    def get_user_email(self):
+        return self.from_user_detail.email
+    
+class UserNotification(models.Model):
+    choices = {
+        'sent': 'sent',
+        'failed': 'failed'
+    }
+    user_detail = models.ForeignKey(UserDetail, on_delete=models.CASCADE, related_name='user_notified')
+    notification = models.ForeignKey(EmailNotification, on_delete=models.CASCADE, related_name='type_email')
+    notification_date = models.DateTimeField(auto_now_add=True, blank=False)
+    status = models.CharField(max_length=200, choices=choices, blank=False)
