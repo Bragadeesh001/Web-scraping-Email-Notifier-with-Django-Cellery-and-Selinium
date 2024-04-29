@@ -42,10 +42,6 @@ class EmailNotification(models.Model):
     name = models.CharField(max_length=255, blank=False)
     body = models.CharField(max_length=1000, blank=False)
     subject = models.CharField(max_length=500, blank=False)
-    from_user_detail = models.ForeignKey(UserDetail, on_delete=models.CASCADE, related_name='email_notification')
-
-    def get_user_email(self):
-        return self.from_user_detail.email
     
 class UserNotification(models.Model):
     choices = {
