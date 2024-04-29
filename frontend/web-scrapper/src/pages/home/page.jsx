@@ -33,11 +33,17 @@ function Home() {
     }
       if (name && url && email) {
         console.log('came to axios')
-      axios.post("", {
-        user: name,
-        email: email,
-        url: url,
-      });
+        axios.post("http://127.0.0.1:8000/product/", {
+          user: name,
+          email: email,
+          url: url,
+        })
+          .then(res => {
+            console.log(res)
+          })
+          .catch(res => {
+          console.log('error', res)
+        })
     }
   }
 

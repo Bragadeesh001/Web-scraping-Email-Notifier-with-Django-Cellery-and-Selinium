@@ -16,13 +16,13 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 #Load task modules from all  registered django app configs
 app.autodiscover_tasks()
 
-app.conf.beat_schedule = {
-    'add every 30 seconds':{
-        'task': 'movies.tasks.add',
-        'schedule': 30.0,
-        'args': (20,10),
-    }
-}
+# app.conf.beat_schedule = {
+#     'add every 30 seconds':{
+#         'task': 'movies.tasks.add',
+#         'schedule': 30.0,
+#         'args': (20,10),
+#     }
+# }
 
 # To run
 # celery -A cfehome worker --beat

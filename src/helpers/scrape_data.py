@@ -4,7 +4,7 @@ url = 'https://www.amazon.in/Centrino-Mens-CHICKU-Sneaker-9-3322-22/dp/B08Z48P1X
 
 html = scrape(url)
 
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, features='html.parser')
 
 def product_title(soup):
     productTitle = soup.find('span', id='productTitle')

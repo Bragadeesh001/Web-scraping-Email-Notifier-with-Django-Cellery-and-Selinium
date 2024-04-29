@@ -14,7 +14,10 @@ SECRET_KEY = 'django-insecure-t=s15)z5mi2i99@i=k@_3@3kh9r--@(#lvnp$l&hi)yvq8z!e1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'http://localhost:5173']
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173'
+]
 
 
 # Application definition
@@ -30,6 +33,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'movies',
     'product',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +44,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'cfehome.urls'
