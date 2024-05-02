@@ -40,7 +40,7 @@ class ProductRating(models.Model):
 
 class EmailNotification(models.Model):
     name = models.CharField(max_length=255, blank=False)
-    body = models.CharField(max_length=1000, blank=False)
+    body = models.CharField(max_length=5000, blank=False)
     subject = models.CharField(max_length=500, blank=False)
     
 class UserNotification(models.Model):
