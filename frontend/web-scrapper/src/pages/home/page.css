@@ -1,0 +1,14 @@
+.rainbow-spiral {
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  background: radial-gradient(circle at center, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 200% 500%;
+  
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents scrollbars */
+}
+
